@@ -35,8 +35,7 @@ func (h *PriceHandler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	var priceHandlerInput PriceHandlerInput
 	json.Unmarshal(input, &priceHandlerInput)
 	var Symbol string = priceHandlerInput.Symbol
-	var Exchange util.Exchange
-	Exchange = priceHandlerInput.Exchange
+	var Exchange util.Exchange = priceHandlerInput.Exchange
 
 	StockPriceUrl := fmt.Sprint(util.BaseUrl, "/pricefeed/", Exchange, "/equitycash/", Symbol)
 	fmt.Println(StockPriceUrl)
