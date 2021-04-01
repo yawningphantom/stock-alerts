@@ -34,18 +34,23 @@ func (h *PriceHandler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 
 	var priceHandlerInput PriceHandlerInput
 	json.Unmarshal(input, &priceHandlerInput)
+
 	var Symbol string = priceHandlerInput.Symbol
 	var Exchange util.Exchange = priceHandlerInput.Exchange
 
-	StockPriceUrl := fmt.Sprint(util.BaseUrl, "/pricefeed/", Exchange, "/equitycash/", Symbol)
-	fmt.Println(StockPriceUrl)
-	data := price.GetPrice(StockPriceUrl)
+	stockUrl, _ := price.GenerateStockUrl(Symbol, Exchange)
+	fmt.Println(stockUrl)
+	stockData, _ := price.GetStockData(stockUrl)
 	if err != nil {
 		http.Error(rw, "Price Handler Failed !!!", http.StatusBadRequest)
 		return
 	}
 
+	apiResponse, err := json.Marshal(stockData)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	rw.Header().Set("Content-Type", "application/json")
-	rw.Write(data)
-
+	rw.Write(apiResponse)
 }

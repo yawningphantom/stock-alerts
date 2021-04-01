@@ -1,6 +1,7 @@
 package util
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -26,4 +27,12 @@ func Api(apiUrl string) []byte {
 	}
 
 	return responseData
+}
+
+func GetExchange(exchange string) Exchange {
+	fmt.Println(exchange)
+	if exchange == "N" {
+		return NSE
+	}
+	return BSE
 }

@@ -1,0 +1,14 @@
+{
+    "stocks": [
+        {
+            "symbol": "ABFRL",
+            "lowerLimit": 100,
+            "upperLimit": 190
+        },
+        {
+            "symbol": "ABFRL",
+            "lowerLimit": 100,
+            "upperLimit": 190
+        }
+    ]
+}

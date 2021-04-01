@@ -6,5 +6,9 @@ type Exchange string
 
 const (
 	BSE Exchange = "bse"
-	NSE          = "nse"
+	NSE Exchange = "nse"
 )
+
+var SymbolMap = map[string]string{
+	"ABFRL": "PFR",
+}
